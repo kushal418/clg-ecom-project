@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 400px;
+            margin-top: 50px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px gray;
+        }
+        .password-container {
+            position: relative;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Signup</h2>
+        {% if error %}
+            <p class="text-danger">{{ error }}</p>
+        {% endif %}
+        <form action="/signup" method="POST">
+            <div class="mb-3">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Mobile Number</label>
+                <input type="text" name="mobile" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3 password-container">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+                <i class="fa fa-eye toggle-password" onclick="togglePassword('password')"></i>
+            </div>
+            <div class="mb-3 password-container">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" id="confirm_password" required>
+                <i class="fa fa-eye toggle-password" onclick="togglePassword('confirm_password')"></i>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Signup</button>
+        </form>
+        <p class="text-center mt-3">Already have an account? <a href="/login">Login here</a></p>
+    </div>
+
+    <script>
+        function togglePassword(id) {
+            var input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
